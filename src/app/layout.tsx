@@ -4,6 +4,8 @@ import {
   Roboto_Flex as Roboto,
   Bai_Jamjuree as BaiJamjuree,
 } from 'next/font/google'
+import { LeftSection } from '@/components/LeftSection'
+import { RightSection } from '@/components/RightSection'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -28,7 +30,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${roboto.variable} ${baiJamjuree.variable} bg-gray-900 font-sans text-gray-100`}
       >
-        {children}
+        <main className="grid h-screen grid-cols-2 bg-[url(../assets/bg-stars.svg)] bg-cover">
+          <LeftSection />
+
+          <RightSection>{children}</RightSection>
+        </main>
       </body>
     </html>
   )

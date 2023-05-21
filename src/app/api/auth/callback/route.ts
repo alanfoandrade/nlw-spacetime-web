@@ -5,6 +5,8 @@ export async function GET(request: NextRequest) {
 
   const code = searchParams.get('code')
 
+  const redirectTo = request.cookies.get('redirectTo')?.value
+
   const response = await fetch('http://localhost:3333/register', {
     method: 'POST',
     headers: {
@@ -15,7 +17,7 @@ export async function GET(request: NextRequest) {
 
   const { token } = await response.json()
 
-  const redirectURL = new URL('/', request.url)
+  const redirectURL = redirectTo ?? new URL('/', request.url)
 
   const cookieExpiresInSeconds = 60 * 60 * 24 * 30
 
